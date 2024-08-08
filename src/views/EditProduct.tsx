@@ -1,6 +1,6 @@
 import { Link, Form, useActionData, ActionFunctionArgs, redirect, LoaderFunctionArgs, useLoaderData } from "react-router-dom"
 import ErrorMessage from "../components/ErrorMessage"
-import { addProduct, getProductById, updateProduct } from "../services/ProductServices"
+import { getProductById, updateProduct } from "../services/ProductServices"
 import { Product } from "../types"
 import ProductForm from "../components/ProductForm"
 
@@ -25,7 +25,7 @@ export async function action({request, params} : ActionFunctionArgs) {
     }
 
     if(params.id !== undefined){
-        await updateProduct(data, params.id)        
+        await updateProduct(data, +params.id)        
         return redirect('/')
     }
 }
